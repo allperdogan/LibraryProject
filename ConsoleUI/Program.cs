@@ -11,7 +11,7 @@ namespace ConsoleUI
             BookManager bookManager = new BookManager(new EfBookDal());
             
 
-            foreach (var book in bookManager.GetBookDetails())
+            foreach (var book in bookManager.GetBookDetails().Data)
             {
                 
                 Console.WriteLine(book.BookName + " " + book.CategoryName + " "+ book.AuthorFirstName + " " + book.AuthorLastName);

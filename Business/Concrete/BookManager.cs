@@ -39,12 +39,12 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        IDataResult<List<Book>> IBookService.GetAll()
+        public IDataResult<List<Book>> GetAll()
         {
             return new SuccessDataResult<List<Book>>(_bookDal.GetAll());
         }
 
-        IDataResult<List<BookDetailDto>> IBookService.GetBookDetails()
+        public IDataResult<List<BookDetailDto>> GetBookDetails()
         {
             return new SuccessDataResult<List<BookDetailDto>>(_bookDal.GetBookDetails());
         }
