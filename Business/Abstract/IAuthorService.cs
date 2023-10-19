@@ -1,6 +1,5 @@
 ﻿using Core.Utilities.Results;
 using Entities.Concrete;
-using Entities.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace Business.Abstract
 {
-    public interface IUserService
+    public interface IAuthorService
     {
-        IDataResult<List<User>> GetAll();
-        IResult AddUser(User user);
-        IResult UpdateUser(User user);
-        IResult DeleteUser(User user);
+        IDataResult<List<Author>> GetAll();
+        IResult AddAuthor(Author author);
+        IResult UpdateAuthor(Author author);
+        IResult DeleteAuthor(Author author);
     }
 }
