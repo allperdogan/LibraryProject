@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -19,7 +20,7 @@ namespace Business.Concrete
         {
             _bookDal = bookDal;
         }
-
+        [SecuredOperation("book.add,admin")]
         public IResult AddBook(Book book)
         {
             _bookDal.Add(book);
@@ -47,6 +48,11 @@ namespace Business.Concrete
         public IDataResult<List<BookDetailDto>> GetBookDetails()
         {
             return new SuccessDataResult<List<BookDetailDto>>(_bookDal.GetBookDetails());
+        }
+
+        public IDataResult<Book> GetById(int id)
+        {
+            return new SuccessDataResult<Book>(_bookDal.Get(b=>b.Id==id));
         }
     }
 }

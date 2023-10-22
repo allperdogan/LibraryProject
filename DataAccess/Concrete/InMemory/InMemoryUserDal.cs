@@ -1,4 +1,5 @@
-﻿using DataAccess.Abstract;
+﻿using Core.Entities.Concrete;
+using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -16,9 +17,9 @@ namespace DataAccess.Concrete.InMemory
         public InMemoryUserDal()
         {
             _users = new List<User>() {
-                new User() { Id = 1, FirstName="Alper", LastName = "Dogan", ShortDescription="new user"},
-                new User() { Id = 2, FirstName="Ahmet", LastName = "Yılmaz", ShortDescription="new user2"},
-                new User() { Id = 3, FirstName="Mehmet", LastName = "Celik", ShortDescription="new user3"},
+                new User() { Id = 1, FirstName="Alper", LastName = "Dogan"},
+                new User() { Id = 2, FirstName="Ahmet", LastName = "Yılmaz"},
+                new User() { Id = 3, FirstName="Mehmet", LastName = "Celik"},
             };
         }
 
@@ -48,12 +49,16 @@ namespace DataAccess.Concrete.InMemory
             throw new NotImplementedException();
         }
 
+        public List<OperationClaim> GetClaims(User user)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(User user)
         {
             User updatedUser = _users.SingleOrDefault(u => u.Id == user.Id);
             updatedUser.FirstName = user.FirstName;
             updatedUser.LastName = user.LastName;
-            updatedUser.ShortDescription = user.ShortDescription;
         }
     }
 }
