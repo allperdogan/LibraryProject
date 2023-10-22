@@ -11,6 +11,7 @@ namespace Business.Abstract
     public interface IReservationService
     {
         IDataResult<List<Reservation>> GetAll();
+        IDataResult<Reservation> GetById(int id);
         IResult AddReservation(Reservation reservation);
         IResult UpdateReservation(Reservation reservation);
         IResult DeleteReservation(Reservation reservation);

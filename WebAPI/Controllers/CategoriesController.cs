@@ -7,18 +7,19 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BooksController : ControllerBase
+    public class CategoriesController : ControllerBase
     {
-        IBookService _bookService;
+        ICategoryService _categoryService;
 
-        public BooksController(IBookService bookService)
+        public CategoriesController(ICategoryService categoryService)
         {
-            _bookService = bookService;
+            _categoryService = categoryService;
         }
+
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var result = _bookService.GetAll();
+            var result = _categoryService.GetAll();
             if (result.Success)
             {
                 return Ok(result.Data);
@@ -29,7 +30,7 @@ namespace WebAPI.Controllers
         [HttpGet("getbyid")]
         public IActionResult GetById(int id)
         {
-            var result = _bookService.GetById(id);
+            var result = _categoryService.GetById(id);
 
             if (result.Success)
             {
@@ -38,9 +39,9 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
         [HttpPost("add")]
-        public IActionResult Add(Book book)
+        public IActionResult Add(Category category)
         {
-            var result = _bookService.AddBook(book);
+            var result = _categoryService.AddCategory(category);
             if (result.Success)
             {
                 return Ok(result);
@@ -49,9 +50,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("delete")]
-        public IActionResult Delete(Book book)
+        public IActionResult Delete(Category category)
         {
-            var result = _bookService.DeleteBook(book);
+            var result = _categoryService.DeleteCategory(category);
             if (result.Success)
             {
                 return Ok(result);
@@ -60,9 +61,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("update")]
-        public IActionResult Update(Book book)
+        public IActionResult Update(Category category)
         {
-            var result = _bookService.UpdateBook(book);
+            var result = _categoryService.UpdateCategory(category);
             if (result.Success)
             {
                 return Ok(result);

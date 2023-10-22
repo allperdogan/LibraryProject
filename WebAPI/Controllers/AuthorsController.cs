@@ -7,29 +7,30 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BooksController : ControllerBase
+    public class AuthorsController : ControllerBase
     {
-        IBookService _bookService;
+        IAuthorService _authorService;
 
-        public BooksController(IBookService bookService)
+        public AuthorsController(IAuthorService authorService)
         {
-            _bookService = bookService;
+            _authorService = authorService;
         }
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var result = _bookService.GetAll();
+            var result = _authorService.GetAll();
+
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
-            return BadRequest(result.Message);
+            return BadRequest(result);
         }
 
         [HttpGet("getbyid")]
         public IActionResult GetById(int id)
         {
-            var result = _bookService.GetById(id);
+            var result = _authorService.GetById(id);
 
             if (result.Success)
             {
@@ -38,9 +39,9 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
         [HttpPost("add")]
-        public IActionResult Add(Book book)
+        public IActionResult Add(Author author)
         {
-            var result = _bookService.AddBook(book);
+            var result = _authorService.AddAuthor(author);
             if (result.Success)
             {
                 return Ok(result);
@@ -49,9 +50,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("delete")]
-        public IActionResult Delete(Book book)
+        public IActionResult Delete(Author author)
         {
-            var result = _bookService.DeleteBook(book);
+            var result = _authorService.DeleteAuthor(author);
             if (result.Success)
             {
                 return Ok(result);
@@ -60,9 +61,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("update")]
-        public IActionResult Update(Book book)
+        public IActionResult Update(Author author)
         {
-            var result = _bookService.UpdateBook(book);
+            var result = _authorService.UpdateAuthor(author);
             if (result.Success)
             {
                 return Ok(result);

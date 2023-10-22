@@ -7,18 +7,19 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BooksController : ControllerBase
+    public class ReservationsController : ControllerBase
     {
-        IBookService _bookService;
+        IReservationService _reservationService;
 
-        public BooksController(IBookService bookService)
+        public ReservationsController(IReservationService reservationService)
         {
-            _bookService = bookService;
+            _reservationService = reservationService;
         }
+
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var result = _bookService.GetAll();
+            var result = _reservationService.GetAll();
             if (result.Success)
             {
                 return Ok(result.Data);
@@ -29,7 +30,7 @@ namespace WebAPI.Controllers
         [HttpGet("getbyid")]
         public IActionResult GetById(int id)
         {
-            var result = _bookService.GetById(id);
+            var result = _reservationService.GetById(id);
 
             if (result.Success)
             {
@@ -38,9 +39,9 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
         [HttpPost("add")]
-        public IActionResult Add(Book book)
+        public IActionResult Add(Reservation reservation)
         {
-            var result = _bookService.AddBook(book);
+            var result = _reservationService.AddReservation(reservation);
             if (result.Success)
             {
                 return Ok(result);
@@ -49,9 +50,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("delete")]
-        public IActionResult Delete(Book book)
+        public IActionResult Delete(Reservation reservation)
         {
-            var result = _bookService.DeleteBook(book);
+            var result = _reservationService.DeleteReservation(reservation);
             if (result.Success)
             {
                 return Ok(result);
@@ -60,9 +61,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("update")]
-        public IActionResult Update(Book book)
+        public IActionResult Update(Reservation reservation)
         {
-            var result = _bookService.UpdateBook(book);
+            var result = _reservationService.UpdateReservation(reservation);
             if (result.Success)
             {
                 return Ok(result);

@@ -36,6 +36,11 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Reservation>>(_reservationDal.GetAll());
         }
 
+        public IDataResult<Reservation> GetById(int id)
+        {
+            return new SuccessDataResult<Reservation>(_reservationDal.Get(r=>r.Id==id));
+        }
+
         public IResult UpdateReservation(Reservation reservation)
         {
             _reservationDal.Update(reservation);
