@@ -21,9 +21,44 @@ namespace WebAPI.Controllers
             var result = _bookService.GetAll();
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
-            return BadRequest(result.Message);
+            return BadRequest(result);
+        }
+
+        [HttpGet("getbookdetails")]
+        public IActionResult GetBookDetails()
+        {
+            var result = _bookService.GetBookDetails();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("getbycategory")]
+        public IActionResult GetByCategory(int categoryId)
+        {
+            var result = _bookService.GetByCategory(categoryId);
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("getbyauthor")]
+        public IActionResult GetByAuthor(int authorId)
+        {
+            var result = _bookService.GetByAuthor(authorId);
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
         }
 
         [HttpGet("getbyid")]

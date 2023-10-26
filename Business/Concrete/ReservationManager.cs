@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -21,7 +22,12 @@ namespace Business.Concrete
 
         public IResult AddReservation(Reservation reservation)
         {
+            IResult result = BusinessRules.Run(CheckReturnDate(reservation.BookId));
             _reservationDal.Add(reservation);
+            if (result != null)
+            {
+                return result;
+            }
             return new SuccessResult();
         }
 
@@ -44,6 +50,19 @@ namespace Business.Concrete
         public IResult UpdateReservation(Reservation reservation)
         {
             _reservationDal.Update(reservation);
+            return new SuccessResult();
+        }
+
+        private IResult CheckReturnDate(int id)
+        {
+            var results = _reservationDal.GetAll(b=>b.BookId==id);
+            foreach (var result in results)
+            {
+                if (result.ReturnDate > DateTime.Now)
+                {
+                    return new ErrorResult();
+                }
+            }
             return new SuccessResult();
         }
     }
