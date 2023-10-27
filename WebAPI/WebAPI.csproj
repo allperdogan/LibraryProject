@@ -7,6 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\BookImages227e1686-a577-438b-ad2a-2f60b2d48dd4.jpg" />
+    <None Include="wwwroot\BookImages2d8c0dc3-3b3a-406b-9262-050dda3db695.jpg" />
+    <None Include="wwwroot\BookImages3973bb4a-d33e-42cf-b59b-55be94c8366f.jpg" />
+    <None Include="wwwroot\BookImages497f564c-edd3-47d0-88c1-7cbc442390ff.jpg" />
+    <None Include="wwwroot\BookImages692ec1e8-ac32-4010-8963-e19fa1c53848.jpg" />
+    <None Include="wwwroot\BookImages70cf2d55-d495-4fbc-a87d-1fd79c0dd1ef.jpg" />
+    <None Include="wwwroot\BookImages71d23936-13c4-44ec-af1b-f6f27ed78d3a.jpg" />
+    <None Include="wwwroot\BookImages97cc821e-d6c5-4b3e-98ab-3a94f798061a.jpg" />
+    <None Include="wwwroot\BookImagesb12e2339-9dab-4119-9943-5eb58128e18d.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.12" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.11" />

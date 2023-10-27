@@ -18,5 +18,8 @@ namespace Entities.DTO
         public string CategoryName { get; set; }
         public int PublishedYear { get; set; }
         public string Summary { get; set; }
+        public string? ImagePath { get; set; }
+        public string? Date { get; set; }
+
     }
 }

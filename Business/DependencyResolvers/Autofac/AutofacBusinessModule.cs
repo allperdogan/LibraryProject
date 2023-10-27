@@ -3,6 +3,7 @@ using Autofac.Extras.DynamicProxy;
 using Business.Abstract;
 using Business.Concrete;
 using Castle.DynamicProxy;
+using Core.Utilities.Helpers.FileHelper;
 using Core.Utilities.Interceptors;
 using Core.Utilities.Security.JWT;
 using DataAccess.Abstract;
@@ -19,6 +20,8 @@ namespace Business.DependencyResolvers.Autofac
     {
         protected override void Load(ContainerBuilder builder)
         {
+            builder.RegisterType<FileHelperManager>().As<IFileHelperService>().SingleInstance();
+
             builder.RegisterType<BookManager>().As<IBookService>().SingleInstance();
             builder.RegisterType<EfBookDal>().As<IBookDal>().SingleInstance();
 
@@ -39,6 +42,9 @@ namespace Business.DependencyResolvers.Autofac
 
             builder.RegisterType<ReservationManager>().As<IReservationService>().SingleInstance();
             builder.RegisterType<EfReservationDal>().As<IReservationDal>().SingleInstance();
+
+            builder.RegisterType<BookImageManager>().As<IBookImageService>().SingleInstance();
+            builder.RegisterType<EfBookImageDal>().As<IBookImageDal>().SingleInstance();
 
 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();

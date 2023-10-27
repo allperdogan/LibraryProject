@@ -26,11 +26,21 @@ namespace DataAccess.Concrete.EntityFramework
                              on b.AuthorId equals a.AuthorId
                              join c in context.Categories
                              on b.CategoryId equals c.CategoryId
+                             join d in context.BookImages
+                             on b.Id equals d.BookId
                              select new BookDetailDto 
                              {
-                                 Id = b.Id ,BookName = b.BookName, AuthorFirstName = a.AuthorFirstName,
-                                 AuthorLastName = a.AuthorLastName, CategoryName = c.CategoryName,
-                                 PublishedYear = b.PublishedYear, Summary = b.Summary
+                                 Id = b.Id ,
+                                 CategoryId = b.CategoryId,
+                                 AuthorId = b.AuthorId,
+                                 BookName = b.BookName, 
+                                 AuthorFirstName = a.AuthorFirstName,
+                                 AuthorLastName = a.AuthorLastName, 
+                                 CategoryName = c.CategoryName,
+                                 PublishedYear = b.PublishedYear, 
+                                 Summary = b.Summary,
+                                 ImagePath = d.ImagePath, 
+                                 Date = d.Date.ToString()
                              };
                 return result.ToList();
             }
@@ -45,6 +55,8 @@ namespace DataAccess.Concrete.EntityFramework
                              on b.AuthorId equals a.AuthorId
                              join c in context.Categories
                              on b.CategoryId equals c.CategoryId
+                             join d in context.BookImages
+                             on b.Id equals d.BookId
                              select new BookDetailDto
                              {
                                  Id = b.Id,
@@ -55,8 +67,9 @@ namespace DataAccess.Concrete.EntityFramework
                                  AuthorLastName = a.AuthorLastName,
                                  CategoryName = c.CategoryName,
                                  PublishedYear = b.PublishedYear,
-                                 Summary = b.Summary
-                                 
+                                 Summary = b.Summary,
+                                 ImagePath = d.ImagePath,
+                                 Date = d.Date.ToString(),
                              };
 
                 return filter == null

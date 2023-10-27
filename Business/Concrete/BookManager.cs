@@ -18,7 +18,7 @@ namespace Business.Concrete
     {
         IBookDal _bookDal;
 
-        public BookManager(IBookDal bookDal, IReservationService reservationService)
+        public BookManager(IBookDal bookDal)
         {
             _bookDal = bookDal;
         }
@@ -56,9 +56,9 @@ namespace Business.Concrete
             return new SuccessDataResult<List<BookDetailDto>>(_bookDal.GetBookDetails());
         }
 
-        public IDataResult<Book> GetById(int id)
+        public IDataResult<BookDetailDto> GetById(int id)
         {
-            return new SuccessDataResult<Book>(_bookDal.Get(b=>b.Id==id));
+            return new SuccessDataResult<BookDetailDto>(_bookDal.GetAllBookDetails(b=>b.Id==id).SingleOrDefault());
         }
 
         public IDataResult<List<BookDetailDto>> GetByCategory(int id)
