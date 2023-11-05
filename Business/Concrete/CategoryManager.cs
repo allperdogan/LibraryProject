@@ -22,7 +22,7 @@ namespace Business.Concrete
             _categoryDal = categoryDal;
         }
 
-        [SecuredOperation("admin")]
+        //[SecuredOperation("admin")]
         [ValidationAspect(typeof(CategoryValidator))]
         public IResult AddCategory(Category category)
         {
@@ -30,7 +30,7 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        [SecuredOperation("admin")]
+        //[SecuredOperation("admin")]
         public IResult DeleteCategory(Category category)
         {
             _categoryDal.Delete(category);
@@ -47,7 +47,12 @@ namespace Business.Concrete
             return new SuccessDataResult<Category>(_categoryDal.Get(b=>b.CategoryId==id));
         }
 
-        [SecuredOperation("admin")]
+        public IResult GetIdByName(string name)
+        {
+            return new SuccessDataResult<Category>(_categoryDal.Get(b => b.CategoryName == name));
+        }
+
+        //[SecuredOperation("admin")]
         [ValidationAspect(typeof(CategoryValidator))]
         public IResult UpdateCategory(Category category)
         {

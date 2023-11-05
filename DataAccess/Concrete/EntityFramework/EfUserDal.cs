@@ -1,6 +1,7 @@
 ﻿using Core.DataAccess.EntityFramework;
 using Core.Entities.Concrete;
 using DataAccess.Abstract;
+using Entities.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,22 @@ namespace DataAccess.Concrete.EntityFramework
                              select new OperationClaim { Id = operationClaim.Id, Name = operationClaim.Name };
                 return result.ToList();
 
+            }
+        }
+
+        public UserDetailDto GetUserDetailsByEmail(string email)
+        {
+            using (var context = new LibraryProjectContext())
+            {
+                var result = from user in context.Users.Where(u => u.Email == email)
+                             select new UserDetailDto
+                             {
+                                 Id = user.Id,
+                                 FirstName = user.FirstName,
+                                 LastName = user.LastName,
+                                 Email = user.Email
+                             };
+                return result.FirstOrDefault();
             }
         }
     }

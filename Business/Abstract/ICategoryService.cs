@@ -15,5 +15,6 @@ namespace Business.Abstract
         IResult AddCategory(Category category);
         IResult UpdateCategory(Category category);
         IResult DeleteCategory(Category category);
+        IResult GetIdByName(string name);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Core.Entities.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,6 +51,11 @@ namespace DataAccess.Concrete.InMemory
         }
 
         public List<OperationClaim> GetClaims(User user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public UserDetailDto GetUserDetailsByEmail(string email)
         {
             throw new NotImplementedException();
         }

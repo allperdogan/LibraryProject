@@ -23,7 +23,7 @@ namespace Business.Concrete
             _bookDal = bookDal;
         }
 
-        [SecuredOperation("admin")]
+        //[SecuredOperation("admin")]
         [ValidationAspect(typeof(BookValidator))]
         public IResult AddBook(Book book)
         {
@@ -31,14 +31,14 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        [SecuredOperation("admin")]
+        //[SecuredOperation("admin")]
         public IResult DeleteBook(Book book)
         {
             _bookDal.Delete(book);
             return new SuccessResult();
         }
 
-        [SecuredOperation("admin")]
+        //[SecuredOperation("admin")]
         [ValidationAspect(typeof(BookValidator))]
         public IResult UpdateBook(Book book)
         {

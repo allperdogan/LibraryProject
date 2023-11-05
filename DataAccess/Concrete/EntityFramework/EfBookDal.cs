@@ -15,8 +15,6 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfBookDal : EfEntityRepositoryBase<Book, LibraryProjectContext>, IBookDal
     {
-        
-
         public List<BookDetailDto> GetBookDetails()
         {
             using (LibraryProjectContext context = new LibraryProjectContext())
@@ -40,7 +38,8 @@ namespace DataAccess.Concrete.EntityFramework
                                  PublishedYear = b.PublishedYear, 
                                  Summary = b.Summary,
                                  ImagePath = d.ImagePath, 
-                                 Date = d.Date.ToString()
+                                 Date = d.Date.ToString(),
+                                 BookId = b.Id
                              };
                 return result.ToList();
             }
@@ -70,6 +69,7 @@ namespace DataAccess.Concrete.EntityFramework
                                  Summary = b.Summary,
                                  ImagePath = d.ImagePath,
                                  Date = d.Date.ToString(),
+                                 BookId = b.Id
                              };
 
                 return filter == null
