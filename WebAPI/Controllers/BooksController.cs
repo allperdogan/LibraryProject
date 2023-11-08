@@ -104,5 +104,16 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+        
+        [HttpPost("getReservationStatus")]
+        public IActionResult ReservationStatus(int id)
+        {
+            var result = _bookService.CheckBookAvailable(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
     }
 }

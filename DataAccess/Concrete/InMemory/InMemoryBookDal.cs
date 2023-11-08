@@ -59,6 +59,11 @@ namespace DataAccess.Concrete.InMemory
             throw new NotImplementedException();
         }
 
+        public List<BookStatusDto> GetAllBookReservationDetails(Expression<Func<BookStatusDto, bool>> filter = null)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<BookDetailDto> GetBookDetails()
         {
             throw new NotImplementedException();

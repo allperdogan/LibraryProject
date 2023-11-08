@@ -15,5 +15,6 @@ namespace DataAccess.Abstract
     {
         List<BookDetailDto> GetBookDetails();
         List<BookDetailDto> GetAllBookDetails(Expression<Func<BookDetailDto, bool>> filter = null);
+        List<BookStatusDto> GetAllBookReservationDetails(Expression<Func<BookStatusDto, bool>> filter = null);
     }
 }

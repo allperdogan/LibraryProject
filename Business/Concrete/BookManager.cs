@@ -9,6 +9,7 @@ using Entities.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -69,6 +70,19 @@ namespace Business.Concrete
         public IDataResult<List<BookDetailDto>> GetByAuthor(int id)
         {
             return new SuccessDataResult<List<BookDetailDto>>(_bookDal.GetAllBookDetails(b => b.AuthorId == id));
+        }
+
+        public IDataResult<List<BookStatusDto>> CheckBookAvailable(int id)
+        {
+            var elements = _bookDal.GetAllBookReservationDetails(b => b.BookId == id);
+            foreach(var element in elements)
+            {
+                if (element.ReturnDate > DateTime.Now)
+                {
+                    return new SuccessDataResult<List<BookStatusDto>>((elements.FindAll(x => x.ReturnDate > DateTime.Now)));
+                }
+            }
+            return new SuccessDataResult<List<BookStatusDto>>();
         }
     }
 }

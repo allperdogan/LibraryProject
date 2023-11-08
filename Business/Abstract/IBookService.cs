@@ -19,5 +19,6 @@ namespace Business.Abstract
         IDataResult<BookDetailDto> GetById(int id);
         IDataResult<List<BookDetailDto>> GetByCategory(int id);
         IDataResult<List<BookDetailDto>> GetByAuthor(int id);
+        IDataResult<List<BookStatusDto>> CheckBookAvailable(int id);
     }
 }

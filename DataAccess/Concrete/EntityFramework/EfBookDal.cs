@@ -15,6 +15,27 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfBookDal : EfEntityRepositoryBase<Book, LibraryProjectContext>, IBookDal
     {
+        public List<BookStatusDto> GetAllBookReservationDetails(Expression<Func<BookStatusDto, bool>> filter = null)
+        {
+            using (LibraryProjectContext context = new LibraryProjectContext())
+            {
+                var result = from b in context.Books
+                             join r in context.Reservations
+                             on b.Id equals r.BookId
+                             select new BookStatusDto
+                             {
+                                 ReservationId = r.Id, 
+                                 BookId = b.Id, 
+                                 UserId = r.UserId, 
+                                 ReserveDate = r.ReserveDate, 
+                                 ReturnDate = r.ReturnDate
+                             };
+                return filter == null
+                    ? result.ToList()
+                    : result.Where(filter).ToList();
+            }
+        }
+
         public List<BookDetailDto> GetBookDetails()
         {
             using (LibraryProjectContext context = new LibraryProjectContext())
@@ -45,7 +66,7 @@ namespace DataAccess.Concrete.EntityFramework
             }
         }
 
-        List<BookDetailDto> IBookDal.GetAllBookDetails(Expression<Func<BookDetailDto, bool>> filter)
+        public List<BookDetailDto> GetAllBookDetails(Expression<Func<BookDetailDto, bool>> filter)
         {
             using (LibraryProjectContext context = new LibraryProjectContext())
             {
