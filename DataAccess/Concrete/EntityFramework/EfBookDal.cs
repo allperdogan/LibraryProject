@@ -46,7 +46,8 @@ namespace DataAccess.Concrete.EntityFramework
                              join c in context.Categories
                              on b.CategoryId equals c.CategoryId
                              join d in context.BookImages
-                             on b.Id equals d.BookId
+                             on b.Id equals d.BookId into di
+                             from img in di.DefaultIfEmpty() // Left Join
                              select new BookDetailDto 
                              {
                                  Id = b.Id ,
@@ -58,8 +59,8 @@ namespace DataAccess.Concrete.EntityFramework
                                  CategoryName = c.CategoryName,
                                  PublishedYear = b.PublishedYear, 
                                  Summary = b.Summary,
-                                 ImagePath = d.ImagePath, 
-                                 Date = d.Date.ToString(),
+                                 ImagePath = img.ImagePath,
+                                 Date = img.Date.ToString(),
                                  BookId = b.Id
                              };
                 return result.ToList();
@@ -76,7 +77,8 @@ namespace DataAccess.Concrete.EntityFramework
                              join c in context.Categories
                              on b.CategoryId equals c.CategoryId
                              join d in context.BookImages
-                             on b.Id equals d.BookId
+                             on b.Id equals d.BookId into di
+                             from img in di.DefaultIfEmpty() // Left Join
                              select new BookDetailDto
                              {
                                  Id = b.Id,
@@ -88,8 +90,8 @@ namespace DataAccess.Concrete.EntityFramework
                                  CategoryName = c.CategoryName,
                                  PublishedYear = b.PublishedYear,
                                  Summary = b.Summary,
-                                 ImagePath = d.ImagePath,
-                                 Date = d.Date.ToString(),
+                                 ImagePath = img.ImagePath,
+                                 Date = img.Date.ToString(),
                                  BookId = b.Id
                              };
 
